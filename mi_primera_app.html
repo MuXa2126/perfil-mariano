@@ -1,0 +1,114 @@
+<!-- 
+    Tarjeta de Presentación Virtual (V-Card)
+    Todo el código HTML, CSS (con Tailwind) y JavaScript está en este único archivo.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tarjeta Virtual - Perfil Profesional</title>
+    <!-- Incluimos Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Usamos la fuente Inter para un look limpio -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Fondo gris claro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor principal de la Tarjeta (Centrado y Responsivo) -->
+    <div id="card" class="bg-white p-8 sm:p-10 rounded-xl shadow-2xl max-w-sm w-full transform transition duration-500 hover:scale-[1.02]">
+        
+        <!-- Foto de Perfil -->
+        <div class="flex justify-center mb-6">
+            <img 
+                src="https://photos.app.goo.gl/epgajL7KxE1MNqn2A" 
+                alt="Foto de Perfil" 
+                class="w-32 h-32 rounded-full border-4 border-lime-500 object-cover shadow-lg"
+            >
+        </div>
+
+        <!-- Información de Nombre y Título -->
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-1">Mariano Simón Cambón</h1>
+            <p class="text-xl font-semibold text-lime-500">Electromecánico Experto & Creador Digital</p>
+        </div>
+
+        <!-- Biografía / Descripción -->
+        <p class="text-gray-600 text-center mb-8 leading-relaxed">
+            Tras 17 años de experiencia demostrada como **Oficial de 1ª** en electromecánica, 
+            ahora aplico mi habilidad para la resolución de problemas en la creación de contenido de vídeo 
+            y el diseño de aplicaciones web con ayuda de la IA.
+        </p>
+
+        <!-- Botones de Contacto y Redes Sociales -->
+        <div class="space-y-4">
+            <!-- Botón de Contacto Principal (VERDE FOSFORITO) -->
+            <!-- La función 'mailto:' abre el cliente de correo por defecto del usuario -->
+            <button onclick="window.open('mailto:muxazone@gmail.com', '_self')"
+                    class="w-full bg-lime-500 text-gray-900 py-3 rounded-lg font-bold uppercase tracking-wider hover:bg-lime-600 transition duration-300 shadow-md transform hover:translate-y-[-2px]">
+                Contacto Rápido
+            </button>
+            
+            <!-- Botón de CV: ABRIRÁ ENLACE EN NUEVA PESTAÑA. ¡AHORA ES COLOR ORO! -->
+            <button onclick="window.open('https://drive.google.com/file/d/1Z6Uw9_ZatupD_8XUnBV7fRnlOEqi3KH0/view?usp=sharing', '_blank')"
+                    class="w-full bg-amber-500 text-gray-900 py-3 rounded-lg font-bold uppercase tracking-wider hover:bg-amber-600 transition duration-300 shadow-md transform hover:translate-y-[-2px]">
+                MI CURRICULUM VITAE
+            </button>
+
+            <!-- Botón de Proyectos (Ahora es Opción A - En Construcción) -->
+            <button onclick="mostrarMensaje('Perfil de Proyectos en Construcción. ¡Pronto más!')"
+                    class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold uppercase tracking-wider hover:bg-gray-900 transition duration-300 shadow-md transform hover:translate-y-[-2px]">
+                Mis Proyectos de Apps
+            </button>
+        </div>
+
+        <!-- Contenedor para mensajes (Simula el 'alert' que no podemos usar) -->
+        <div id="mensaje-box" class="mt-6 p-3 bg-blue-100 text-blue-800 rounded-lg text-center hidden transition-opacity duration-500 opacity-0">
+            <!-- El mensaje se insertará aquí -->
+        </div>
+    </div>
+
+    <!-- Script de JavaScript para la interactividad -->
+    <script>
+        // Función para mostrar un mensaje temporal en la tarjeta
+        function mostrarMensaje(texto) {
+            const mensajeBox = document.getElementById('mensaje-box');
+            
+            // 1. Mostrar el mensaje
+            mensajeBox.textContent = texto;
+            mensajeBox.classList.remove('hidden');
+            
+            // 2. Aplicar la transición de opacidad
+            // Se usa setTimeout para asegurar que la clase 'hidden' se remueva antes de aplicar la opacidad
+            setTimeout(() => {
+                mensajeBox.classList.remove('opacity-0');
+                mensajeBox.classList.add('opacity-100');
+            }, 10); // Un pequeño retraso
+
+            // 3. Ocultar el mensaje después de 3 segundos
+            setTimeout(() => {
+                mensajeBox.classList.remove('opacity-100');
+                mensajeBox.classList.add('opacity-0');
+                
+                // 4. Ocultar completamente con 'hidden' después de la transición
+                setTimeout(() => {
+                    mensajeBox.classList.add('hidden');
+                }, 500); // Espera la duración de la transición (500ms)
+
+            }, 3000); // Muestra por 3 segundos
+        }
+    </script>
+
+</body>
+</html>
